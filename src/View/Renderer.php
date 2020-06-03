@@ -35,13 +35,14 @@ class Renderer implements RendererInterface
      */
     protected $helper;
 
+    private $__pluginCache = [];
+
     /**
      * @param Smarty $engine
      */
     public function setEngine(Smarty $engine)
     {
         $this->engine = $engine;
-        $this->engine->assign('this', $this);
     }
 
     /**
@@ -110,6 +111,8 @@ class Renderer implements RendererInterface
         }
 
         $smarty = $this->getEngine();
+        $smarty->clearAllAssign();
+        $smarty->assign('this', $this);
         $smarty->assign($values);
 
         $content = $smarty->fetch($file);
@@ -161,17 +164,6 @@ class Renderer implements RendererInterface
      */
     public function setHelperPluginManager(HelperPluginManager $helper)
     {
-        if (is_string($helper)) {
-            if (!class_exists($helper)) {
-                throw new InvalidArgumentException(
-                    sprintf(
-                        'Invalid helper helpers class provided (%s)',
-                        $helper
-                    )
-                );
-            }
-            $helper = new $helper(new ServiceManager());
-        }
         if (!$helper instanceof HelperPluginManager) {
             throw new InvalidArgumentException(
                 sprintf(
@@ -180,7 +172,6 @@ class Renderer implements RendererInterface
                 )
             );
         }
-        $helper->setRenderer($this);
         $this->helper = $helper;
 
         return $this;
@@ -191,10 +182,6 @@ class Renderer implements RendererInterface
      */
     public function getHelperPluginManager()
     {
-        if ($this->helper === null) {
-            $this->setHelperPluginManager(new HelperPluginManager(new ServiceManager()));
-        }
-
         return $this->helper;
     }
 
@@ -204,9 +191,14 @@ class Renderer implements RendererInterface
      *
      * @return mixed
      */
+
     public function plugin($name, array $options = null)
     {
-        return $this->getHelperPluginManager()->get($name, $options);
+        $helper = $this->getHelperPluginManager();
+        if ($helper->has($name)) {
+             return $helper->get($name, $options);
+        }
+        return $helper->get($name, $options);
     }
 
     /**
@@ -217,12 +209,16 @@ class Renderer implements RendererInterface
      */
     public function __call($method, $argv)
     {
-        $plugin = $this->plugin($method);
-
+        if (!isset($this->__pluginCache[$method])) {
+            $this->__pluginCache[$method] = $this->plugin($method);
+        }
+        $plugin = $this->__pluginCache[$method];
+       
         if (is_callable($plugin)) {
             return call_user_func_array($plugin, $argv);
         }
 
         return $plugin;
     }
+
 }
