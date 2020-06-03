@@ -20,7 +20,7 @@ class RendererFactory implements FactoryInterface
 
         /** @var $resolver \Laminas\View\Resolver\AggregateResolver */
         $resolver = $container->get('ViewResolver');
-        $resolver->attach($pathResolver);
+        $resolver->attach($pathResolver,$config['priority']);
 
         $engine = new Smarty();
         $engine->setCompileDir($config['compile_dir']);

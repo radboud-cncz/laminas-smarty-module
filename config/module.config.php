@@ -29,10 +29,11 @@ return [
     ],
     'smarty' => [
         'suffix' => 'tpl',
-        'compile_dir' => getcwd() . '/data/smarty/templates_c',
-        'config_file' => getcwd() . '/config/autoload/smarty.conf',
+        'priority' => 1,
         'escape_html' => true,
         'caching' => false,
+        'compile_dir' => getcwd() . '/data/smarty/templates_c',
+        'config_file' => getcwd() . '/config/autoload/smarty.conf',
         'cache_dir' => getcwd() . '/data/smarty/cache',
         'plugins_dir' => getcwd() . '/data/smarty/plugins',
         'plugins' => [
