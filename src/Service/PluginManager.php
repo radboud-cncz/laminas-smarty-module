@@ -1,7 +1,7 @@
 <?php
 namespace Smarty\Service;
 
-use Zend\ServiceManager\AbstractPluginManager;
+use Laminas\ServiceManager\AbstractPluginManager;
 use Smarty\Plugin\PluginInterface;
 
 class PluginManager extends AbstractPluginManager

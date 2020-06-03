@@ -1,11 +1,11 @@
 <?php
 namespace Smarty\Service;
 
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 use Interop\Container\ContainerInterface;
 use Smarty\View\Renderer;
 use Smarty;
-use Zend\View\HelperPluginManager;
+use Laminas\View\HelperPluginManager;
 
 class RendererFactory implements FactoryInterface
 {
@@ -14,11 +14,11 @@ class RendererFactory implements FactoryInterface
         $config = $container->get('Configuration');
         $config = $config['smarty'];
 
-        /** @var $pathResolver \Zend\View\Resolver\TemplatePathStack */
+        /** @var $pathResolver \Laminas\View\Resolver\TemplatePathStack */
         $pathResolver = clone $container->get('ViewTemplatePathStack');
         $pathResolver->setDefaultSuffix($config['suffix']);
 
-        /** @var $resolver \Zend\View\Resolver\AggregateResolver */
+        /** @var $resolver \Laminas\View\Resolver\AggregateResolver */
         $resolver = $container->get('ViewResolver');
         $resolver->attach($pathResolver);
 

@@ -1,8 +1,8 @@
 <?php
 namespace Smarty\Exception;
 
-use Zend\ServiceManager\Exception\InvalidServiceException as ZendInvalidServiceException;
+use Laminas\ServiceManager\Exception\InvalidServiceException as LaminasInvalidServiceException;
 
-class InvalidServiceException extends ZendInvalidServiceException
+class InvalidServiceException extends LaminasInvalidServiceException
 {
 }

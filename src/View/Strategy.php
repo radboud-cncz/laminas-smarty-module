@@ -1,9 +1,9 @@
 <?php
 namespace Smarty\View;
 
-use Zend\EventManager\ListenerAggregateInterface;
-use Zend\EventManager\EventManagerInterface;
-use Zend\View\ViewEvent;
+use Laminas\EventManager\ListenerAggregateInterface;
+use Laminas\EventManager\EventManagerInterface;
+use Laminas\View\ViewEvent;
 use Smarty\View\Renderer;
 
 class Strategy implements ListenerAggregateInterface

@@ -5,11 +5,11 @@ namespace Smarty\View;
 use ArrayObject;
 use RuntimeException;
 use Smarty;
-use Zend\View\Exception\DomainException;
-use Zend\View\HelperPluginManager;
-use Zend\View\Model\ModelInterface;
-use Zend\View\Renderer\RendererInterface;
-use Zend\View\Resolver\ResolverInterface;
+use Laminas\View\Exception\DomainException;
+use Laminas\View\HelperPluginManager;
+use Laminas\View\Model\ModelInterface;
+use Laminas\View\Renderer\RendererInterface;
+use Laminas\View\Resolver\ResolverInterface;
 
 class Renderer implements RendererInterface
 {
@@ -175,7 +175,7 @@ class Renderer implements RendererInterface
         if (!$helper instanceof HelperPluginManager) {
             throw new InvalidArgumentException(
                 sprintf(
-                    'Helper helpers must extend Zend\View\HelperPluginManager; got type "%s" instead',
+                    'Helper helpers must extend Laminas\View\HelperPluginManager; got type "%s" instead',
                     (is_object($helper) ? get_class($helper) : gettype($helper))
                 )
             );

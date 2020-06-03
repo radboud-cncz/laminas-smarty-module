@@ -1,8 +1,8 @@
 <?php
 namespace Smarty\Service;
 
-use Zend\ServiceManager\Factory\DelegatorFactoryInterface;
-use Zend\ServiceManager\PluginManagerInterface;
+use Laminas\ServiceManager\Factory\DelegatorFactoryInterface;
+use Laminas\ServiceManager\PluginManagerInterface;
 use Interop\Container\ContainerInterface;
 use Smarty;
 use Smarty\Service\PluginManager;

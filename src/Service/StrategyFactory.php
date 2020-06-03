@@ -1,7 +1,7 @@
 <?php
 namespace Smarty\Service;
 
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 use Interop\Container\ContainerInterface;
 use Smarty\View\Renderer;
 use Smarty\View\Strategy;
