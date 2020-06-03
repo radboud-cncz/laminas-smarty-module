@@ -29,7 +29,7 @@ return [
     ],
     'smarty' => [
         'suffix' => 'tpl',
-        'priority' => 1,
+        'priority' => 2,
         'escape_html' => true,
         'caching' => false,
         'compile_dir' => getcwd() . '/data/smarty/templates_c',
