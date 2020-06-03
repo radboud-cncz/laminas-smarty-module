@@ -1,5 +1,5 @@
 {
-    "name":        "cncz/laminas-smarty-module",
+    "name":        "radboud-cncz/laminas-smarty-module",
     "description": "Laminas module for integrating Smarty 3 as View Manager",
     "type":        "library",
     "license":     "MIT",
