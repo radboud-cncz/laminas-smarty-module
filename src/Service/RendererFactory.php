@@ -15,11 +15,11 @@ class RendererFactory implements FactoryInterface
         $config = $config['smarty'];
 
         /** @var $pathResolver \Laminas\View\Resolver\TemplatePathStack */
-        $pathResolver = clone $container->get('ViewTemplatePathStack');
+        $pathResolver = $container->build('ViewTemplatePathStack');
         $pathResolver->setDefaultSuffix($config['suffix']);
 
         /** @var $resolver \Laminas\View\Resolver\AggregateResolver */
-        $resolver = $container->get('ViewResolver');
+        $resolver = $container->build('ViewResolver');
         $resolver->attach($pathResolver,$config['priority']);
 
         $engine = new Smarty();
