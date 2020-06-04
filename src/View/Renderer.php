@@ -195,10 +195,12 @@ class Renderer implements RendererInterface
     public function plugin($name, array $options = null)
     {
         $helper = $this->getHelperPluginManager();
-        if ($helper->has($name)) {
-             return $helper->get($name, $options);
-        }
-        return $helper->get($name, $options);
+        $plugin = $helper->get($name, $options);
+
+        //setting Smarty renderer on this plugin, as it is used in a (parent) smarty template            
+        $plugin->setView($this);
+             
+        return $plugin;
     }
 
     /**
